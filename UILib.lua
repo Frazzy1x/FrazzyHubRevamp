@@ -1,4 +1,4 @@
-local OwlLib = {Content = {}};
+local FrazzyLib = {Content = {}};
 local config = {};
 
 local placeID = tostring(game.PlaceId);
@@ -20,10 +20,10 @@ script = popupGui.mainScript;
 local popup = loadstring(popupGui.mainScript.Source)();
 script = oldScript;
 
-local owlLibGui = game:GetObjects("rbxassetid://4530443679")[1];
-owlLibGui.Parent = game:GetService("CoreGui");
-owlLibGui.Name = httpService:GenerateGUID(false);
-local mainFrame = owlLibGui.mainFrame;
+local FrazzyLibGui = game:GetObjects("rbxassetid://4966748729")[1];
+FrazzyLibGui.Parent = game:GetService("CoreGui");
+FrazzyLibGui.Name = httpService:GenerateGUID(false);
+local mainFrame = FrazzyLibGui.mainFrame;
 
 local tweenService = game:GetService("TweenService");
 local inputService = game:GetService("UserInputService");
@@ -84,7 +84,7 @@ mainFrame.topBarFrame.exitBtn.MouseButton1Click:Connect(function()
     mainFrame.topBarFrame:TweenSize(newUDim2(0, 0, 0, 27), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.25);
     mainFrame:TweenSize(newUDim2(0, 0, 0, 27), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.25);
     wait(0.25);
-    owlLibGui:Destroy();
+    FrazzyLibGui:Destroy();
 end);
 
 mainFrame.topBarFrame.miniBtn.InputBegan:Connect(function(input)
@@ -109,17 +109,17 @@ end);
 
 inputService.InputBegan:Connect(function(input, onGui)
     if not onGui and (input.KeyCode == Enum.KeyCode.P or input.KeyCode == Enum.KeyCode.RightShift) then
-        owlLibGui.Enabled = not owlLibGui.Enabled;
+        FrazzyLibGui.Enabled = not FrazzyLibGui.Enabled;
     end;
 end);
 
-function OwlLib:SetCategory() end;
+function FrazzyLib:SetCategory() end;
 
-function OwlLib.Content:Resize(scrollingFrame)
+function FrazzyLib.Content:Resize(scrollingFrame)
     scrollingFrame.CanvasSize = newUDim2(0, 0, 0, (#scrollingFrame:GetChildren() - 1) * 36);
 end;
 
-function OwlLib.Content:Ripple(btn)
+function FrazzyLib.Content:Ripple(btn)
     spawn(function()
 		local rippleEffect = Instance.new("ImageLabel", btn);
 		local rippleEffectInner = Instance.new("ImageLabel", rippleEffect);
@@ -150,7 +150,7 @@ function OwlLib.Content:Ripple(btn)
 	end)
 end;
 
-function OwlLib.Content:initBtnEffect(btn)
+function FrazzyLib.Content:initBtnEffect(btn)
 	local btnHover = tweenService:Create(btn, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85});
 	local btnHover1 = tweenService:Create(btn, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1});
 
@@ -167,7 +167,7 @@ function OwlLib.Content:initBtnEffect(btn)
     end);
 end;
 
-function OwlLib:new(title)
+function FrazzyLib:new(title)
     local self = setmetatable({}, {__index = self.Content});
 
     self.bodyFrame = game:GetObjects("rbxassetid://4531111462")[1];
@@ -218,7 +218,7 @@ function OwlLib:new(title)
     return self;
 end;
 
-function OwlLib.Content:newBtn(title, callback, noToggle)
+function FrazzyLib.Content:newBtn(title, callback, noToggle)
     self:Resize(self.bodyFrame);
 
     if not noToggle then
@@ -289,7 +289,7 @@ function OwlLib.Content:newBtn(title, callback, noToggle)
     end;
 end;
 
-function OwlLib.Content:newSlider(title, callback, min, max, startPoint)
+function FrazzyLib.Content:newSlider(title, callback, min, max, startPoint)
     self:Resize(self.bodyFrame);
 
     local dragging = false;
@@ -347,7 +347,7 @@ function OwlLib.Content:newSlider(title, callback, min, max, startPoint)
 	end);
 end;
 
-function OwlLib.Content:newTextbox(title, callback, presetText, noCallbackOnStart)
+function FrazzyLib.Content:newTextbox(title, callback, presetText, noCallbackOnStart)
     self:Resize(self.bodyFrame);
 
     local btn = game:GetObjects("rbxassetid://4531463561")[1];
@@ -375,7 +375,7 @@ function OwlLib.Content:newTextbox(title, callback, presetText, noCallbackOnStar
     end);
 end;
 
-function OwlLib.Content:newBind(title, callback, presetKeyCode)
+function FrazzyLib.Content:newBind(title, callback, presetKeyCode)
     self:Resize(self.bodyFrame);
 
     local enabled = false;
@@ -423,7 +423,7 @@ function OwlLib.Content:newBind(title, callback, presetKeyCode)
     end);
 end;
 
-function OwlLib.Content:newCBind(title, callback, presetKeyCode)
+function FrazzyLib.Content:newCBind(title, callback, presetKeyCode)
     self:Resize(self.bodyFrame);
 
     local enabled = false;
@@ -511,7 +511,7 @@ function OwlLib.Content:newCBind(title, callback, presetKeyCode)
     end);
 end;
 
-function OwlLib.Content:newColorPicker(title, callback, presetColor)
+function FrazzyLib.Content:newColorPicker(title, callback, presetColor)
     self:Resize(self.bodyFrame);
 
     local oldSize;
@@ -634,7 +634,7 @@ function OwlLib.Content:newColorPicker(title, callback, presetColor)
     end);
 end;
 
-function OwlLib.Content:newDropdown(title, callback, list, noCallbackOnStart)
+function FrazzyLib.Content:newDropdown(title, callback, list, noCallbackOnStart)
     self:Resize(self.bodyFrame);
 
     local oldSize;
@@ -725,4 +725,4 @@ function OwlLib.Content:newDropdown(title, callback, list, noCallbackOnStart)
     }
 end;
 
-return OwlLib;
+return FrazzyLib;
